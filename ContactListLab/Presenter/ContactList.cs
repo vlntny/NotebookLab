@@ -1,6 +1,6 @@
 ﻿namespace ContactListLab.Presenter;
 
-// список контактов
+// список контактов 
 public class ContactList : IContactList
 {
     private List<Contact> contacts;
