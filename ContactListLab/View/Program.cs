@@ -1,11 +1,14 @@
-﻿using ContactListLab.Presenter;
+﻿using ContactListLab.AppContext;
+using ContactListLab.Model;
+using ContactListLab.Presenter;
 
 // консольное взаимодействие (записная книжка)
 class Program
 {
     static void Main()
     {
-        ContactList contactList = new ContactList();
+        MyDatabase database = new MyDatabase(new MyContext());
+        ContactList contactList = new ContactList(database);
 
         while (true)
         {
@@ -27,7 +30,7 @@ class Program
                     SearchMenu(contactList);
                     break;
                 case "3":
-                    AddContactMenu(contactList);
+                    AddContactMenu(contactList, database);
                     break;
                 case "4":
                     Console.WriteLine("Exiting the program.");
@@ -79,7 +82,7 @@ class Program
     }
 
 
-    static void AddContactMenu(ContactList contactList)
+    static void AddContactMenu(ContactList contactList, MyDatabase database)
     {
         Console.WriteLine("\nNew contact");
         Console.Write("Name: ");
@@ -92,5 +95,6 @@ class Program
         string email = Console.ReadLine();
 
         contactList.AddContact(name, surname, phone, email);
+        database.SaveContacts(contactList);
     }
 }

@@ -1,13 +1,15 @@
-﻿namespace ContactListLab.Presenter;
+﻿using ContactListLab.Model;
+
+namespace ContactListLab.Presenter;
 
 // список контактов 
 public class ContactList : IContactList
 {
     private List<Contact> contacts;
 
-    public ContactList()
+    public ContactList(IMyDatabase db)
     {
-        contacts = new List<Contact>();
+        contacts = db.LoadContacts();
     }
 
     public List<Contact> GetContacts()

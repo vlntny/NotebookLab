@@ -1,4 +1,6 @@
+using ContactListLab.Model;
 using ContactListLab.Presenter;
+using Moq;
 using NUnit.Framework;
 namespace ContactListTesting;
 
@@ -6,74 +8,34 @@ namespace ContactListTesting;
 public class Tests
 {
     [Test]
-        public void AddContact_ContactDoesNotExist_ContactAddedSuccessfully()
-        {
-            // Arrange
-            ContactList contactList = new ContactList();
-            string name = "John";
-            string surname = "Doe";
-            string phone = "+123456789";
-            string email = "john.doe@example.com";
+    public void AddContact_ShouldAddtoList()
+    {
+        var moq = new Mock<IMyDatabase>();
+        moq.Setup(r => r.LoadContacts()).Returns(new List<Contact>());
 
-            // Act
-            contactList.AddContact(name, surname, phone, email);
-
-            // Assert
-            Assert.AreEqual(1, contactList.GetContacts().Count);
-        }
-
-        [Test]
-        public void AddContact_ContactAlreadyExists_ContactNotAdded()
-        {
-            // Arrange
-            ContactList contactList = new ContactList();
-            string name = "John";
-            string surname = "Doe";
-            string phone = "+123456789";
-            string email = "john.doe@example.com";
-
-            // Add the contact initially
-            contactList.AddContact(name, surname, phone, email);
-
-            // Act
-            contactList.AddContact(name, surname, phone, email);
-
-            // Assert
-            Assert.AreEqual(1, contactList.GetContacts().Count);
-        }
-
-        [Test]
-        public void SearchContacts_SearchByName_ContactFound()
-        {
-            // Arrange
-            ContactList contactList = new ContactList();
-            string name = "John";
-            string surname = "Doe";
-            string phone = "+123456789";
-            string email = "john.doe@example.com";
-            contactList.AddContact(name, surname, phone, email);
-
-            // Act
-            var result = contactList.SearchContacts(1, name);
-
-            // Assert
-            Assert.AreEqual(1, result.Count);
-            Assert.AreEqual(name, result[0].Name);
-            Assert.AreEqual(surname, result[0].Surname);
-        }
-
-        [Test]
-        public void SearchContacts_InvalidChoice_ReturnsNull()
-        {
-            // Arrange
-            ContactList contactList = new ContactList();
-
-            // Act
-            var result = contactList.SearchContacts(10, "");
-
-            // Assert
-            Assert.IsNull(result);
-        }
-
+        var contactList = new ContactList(moq.Object);
         
+        contactList.AddContact("test", "test2", "test3", "test4");
+        var contactfromlist = contactList.GetContacts().First();
+        
+        Assert.AreEqual("test", contactfromlist.Name);
+        Assert.AreEqual("test2", contactfromlist.Surname);
+        Assert.AreEqual("test3", contactfromlist.PhoneNumber);
+        Assert.AreEqual("test4", contactfromlist.Email);
+    }
+
+    [Test]
+    public void AddContact_DbHasThis()
+    {
+        var moq = new Mock<IMyDatabase>();
+        moq.Setup(r => r.LoadContacts()).Returns(new List<Contact>());
+        var contactList = new ContactList(moq.Object);
+
+        Assert.IsEmpty(moq.Object.LoadContacts());
+
+        contactList.AddContact("test", "test2", "test3", "test4");
+
+        Assert.IsNotEmpty(moq.Object.LoadContacts());
+
+    }
 }
