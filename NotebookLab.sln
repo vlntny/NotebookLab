@@ -4,6 +4,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContactListLab", "ContactLi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContactListTesting", "ContactListTesting\ContactListTesting.csproj", "{2FCD7173-673B-450E-901C-7053626C4E26}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContactListWeb", "ContactListWeb\ContactListWeb.csproj", "{1DB9BE89-AE5A-476A-97AC-1285120A291D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -18,5 +20,9 @@ Global
 		{2FCD7173-673B-450E-901C-7053626C4E26}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2FCD7173-673B-450E-901C-7053626C4E26}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2FCD7173-673B-450E-901C-7053626C4E26}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1DB9BE89-AE5A-476A-97AC-1285120A291D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1DB9BE89-AE5A-476A-97AC-1285120A291D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1DB9BE89-AE5A-476A-97AC-1285120A291D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1DB9BE89-AE5A-476A-97AC-1285120A291D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
