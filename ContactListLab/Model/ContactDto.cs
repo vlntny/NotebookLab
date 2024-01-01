@@ -1,4 +1,6 @@
-﻿namespace ContactListLab.Model;
+﻿using ContactListLab.Presenter;
+
+namespace ContactListLab.Model;
 
 public class ContactDto
 {
@@ -7,4 +9,12 @@ public class ContactDto
     public string surname { get; set; }
     public string phoneNumber { get; set; }
     public string email { get; set;  }
+
+    public ContactDto(Contact t)
+    {
+        name = t.Name;
+        surname = t.Surname;
+        phoneNumber = t.PhoneNumber;
+        email = t.Email;
+    }
 }

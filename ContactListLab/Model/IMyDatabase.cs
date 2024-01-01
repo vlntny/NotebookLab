@@ -4,7 +4,7 @@ namespace ContactListLab.Model;
 
 public interface IMyDatabase
 {
-    List<Contact> LoadContacts();
+    Task<List<Contact>> LoadContacts();
     void SaveContacts(ContactList contacts);
     
 }
