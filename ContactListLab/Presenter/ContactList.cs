@@ -9,7 +9,7 @@ public class ContactList : IContactList
 
     public ContactList(IMyDatabase db)
     {
-        contacts = db.LoadContacts();
+        //contacts = db.LoadContacts();
     }
 
     public List<Contact> GetContacts()

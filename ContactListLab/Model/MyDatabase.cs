@@ -1,4 +1,5 @@
-﻿using ContactListLab.AppContext;
+﻿using System.Collections.ObjectModel;
+using ContactListLab.AppContext;
 using ContactListLab.Presenter;
 using Microsoft.EntityFrameworkCore;
 
@@ -36,6 +37,15 @@ public class MyDatabase : IMyDatabase
         
         var localTasks = _tasks.Select(x => ConvertToDTO(x)).ToList();
         _context.Contacts.AddRangeAsync(localTasks);
+        await _context.SaveChangesAsync();
+    }
+    
+    public async void SaveContacts(ObservableCollection<ContactDto> contacts)
+    {
+        _context.Contacts.RemoveRange(_context.Contacts);
+        await _context.SaveChangesAsync();
+
+        _context.Contacts.AddRangeAsync(contacts);
         await _context.SaveChangesAsync();
     }
     

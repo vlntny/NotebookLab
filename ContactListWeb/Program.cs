@@ -14,7 +14,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddDbContext<MyContext>(options =>
-    options.UseSqlite(builder.Configuration.GetConnectionString("TODO")));
+    options.UseSqlite(builder.Configuration.GetConnectionString("CONTACT")));
 
 builder.Services.AddTransient<IContactRepository, ContactRepository>();
 builder.Services.AddTransient<IMyDatabase, MyDatabase>();
